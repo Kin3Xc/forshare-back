@@ -1,0 +1,14 @@
+{
+  "name": "forshare-back",
+  "version": "1.0.0",
+  "description": "Backend de forshare",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Elkin Urango",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
