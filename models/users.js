@@ -5,11 +5,11 @@ var bcrypt = require('bcrypt');
 var UserSchema = new Schema({
 	nombre: String,
 	email: { type: String, required: true, index: { unique: true } },
-	username: { type: String, required: true, index: { unique: true } },
 	password: String,
 	direccion: String,
 	telefono: Number,
-	avatar: String
+	avatar: String,
+  token: String
 });
 
 //correr antes de .save()
@@ -24,7 +24,6 @@ UserSchema.pre('save', function(next) {
       next();
     });
   });
-
 });
 
 // comparar el password en el login

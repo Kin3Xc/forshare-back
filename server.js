@@ -1,5 +1,8 @@
 // Require Dependencias
 var express = require('express');
+var router = express.Router();
+
+var morgan = require("morgan");
 var mongoose = require('mongoose');
 var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
@@ -8,11 +11,25 @@ var cors = require('cors');
 var favicon = require('favicon');
 var fs = require('fs');
 var multer = require('multer');
+var jwt = require("jsonwebtoken");
+
+var routes_users = require('./routes/users');
 
 // require mongo
 var database = require('./database/database.js');
 database.connect();
 var app = express();
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(morgan("dev"));
+app.use(function(req, res, next) {
+res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+    next();
+});
 
 // require todos los modelos
 fs.readdirSync(__dirname+ '/models').forEach(function(filename){
@@ -48,7 +65,8 @@ router.get('/', function(req, res){
 });
 
 // routes users
-app.use('/api/user', require('./routes/users'));
+app.use('/api/users', routes_users);
+
 
 
 // ERROR HANDLERS
@@ -82,6 +100,10 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
+});
+
+process.on('uncaughtException', function(err) {
+  console.log(err);
 });
 
 

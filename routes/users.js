@@ -3,11 +3,10 @@
 var express = require('express');
 var router = express.Router();
 
-var auth = require('../auth/auth');  
-var middleware = require('../middleware/middleware');
-var User = require('../models/user');
+var user = require('../controllers/users');
 
-var user = require('../controlers/users');
+// login de usuario
+router.post('/login', user.login);
 
 // registrar usuario
 router.post('/api/users', user.add_user);
@@ -17,4 +16,11 @@ router.put('/api/users/:id', user.update_user);
 
 // eliminar usuario
 router.delete('/api/users/:id', user.delete_user);
+
+
+
+
+// esporto el modulo
+module.exports = router;
+
 
