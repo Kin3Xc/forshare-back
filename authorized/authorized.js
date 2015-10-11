@@ -12,4 +12,3 @@ exports.ensureAuthorized = function(req, res, next){
         res.json({message: 'No tienes permiso para esta sección'});
     }
 }
-

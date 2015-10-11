@@ -1,9 +1,11 @@
-// Require Dependencias
-var express = require('express');
-var router = express.Router();
+// Archivo principal del Backend, configuración del servidor
 
+// Require Dependencias
+var express = require('express'); // Express: Framework HTTP para Node.js
+var router = express.Router();
+var mongoose = require('mongoose'); // Mongoose: Libreria para conectar con MongoDB
 var morgan = require("morgan");
-var mongoose = require('mongoose');
+
 var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
 var path = require('path');
@@ -12,12 +14,19 @@ var favicon = require('favicon');
 var fs = require('fs');
 var multer = require('multer');
 var jwt = require("jsonwebtoken");
+var passport = require('passport'); // Passport: Middleware de Node que facilita la autenticación de usuarios
 
-var routes_users = require('./routes/users');
+var routes_users = require('./routes/users'); // Dónde tenemos la configuración de las rutas de usuarios
 
-// require mongo
+// Importamos el modelo usuario y la configuración de passport
+require('./models/users');
+require('./authorized/passport')(passport);
+
+// conexion a la base de datos de mongoDB que esta en local
 var database = require('./database/database.js');
 database.connect();
+
+// Iniciamos la aplicación Express
 var app = express();
 
 
@@ -39,11 +48,18 @@ fs.readdirSync(__dirname+ '/models').forEach(function(filename){
 
 // app.use(multer({ dest: './uploads/'}));
 
-// middlewares
+// Middlewares de Express que nos permiten enrutar y poder
+// realizar peticiones HTTP (GET, POST, PUT, DELETE)
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 app.use(morgan("dev"));
 app.use(cors());
+
+// Configuración de Passport. Lo inicializamos
+// y le indicamos que Passport maneje la Sesión
+app.use(passport.initialize());
+app.use(passport.session());
+// app.use(app.router);
 
 
 // app.use(logger('dev'));

@@ -1,7 +1,14 @@
+// Modelo Usuario para la base de datos
+
+// Mongoose es una libreria de Node que nos permite
+// conectarnos a una base de datos MongoDB y modelar un esquema
+// para ella.
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 
+// Campos que vamos a guardar en la base de datos
 var UserSchema = new Schema({
 	nombre: String,
 	email: { type: String, required: true, index: { unique: true } },
@@ -10,6 +17,7 @@ var UserSchema = new Schema({
 	telefono: Number,
 	avatar: String,
   token: String,
+	provider: String,
   createdAt: {type:Date, default: Date.now}
 });
 
@@ -36,4 +44,6 @@ UserSchema.methods.comparePassword = function(password, done){
  });
 };
 
+// Exportamos el modelo 'User_model' para usarlo en otras
+// partes de la aplicación
 module.exports = mongoose.model('User_model', UserSchema);
