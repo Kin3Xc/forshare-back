@@ -9,7 +9,8 @@ var UserSchema = new Schema({
 	direccion: String,
 	telefono: Number,
 	avatar: String,
-  token: String
+  token: String,
+  createdAt: {type:Date, default: Date.now}
 });
 
 //correr antes de .save()

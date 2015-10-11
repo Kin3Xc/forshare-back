@@ -8,7 +8,8 @@ exports.ensureAuthorized = function(req, res, next){
         req.token = bearerToken;
         next();
     } else {
-        res.send(403);
+        // res.send(403);
+        res.json({message: 'No tienes permiso para esta sección'});
     }
 }
 

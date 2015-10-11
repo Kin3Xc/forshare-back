@@ -4,6 +4,8 @@ var jwt = require("jsonwebtoken");
 
 var service = require('../services/token');
 var usuario = require('../models/users');
+var config = require('../config');
+
 
 
 // exports.login = function(req, res){
@@ -72,32 +74,52 @@ exports.login = function(req, res){
 exports.add_user = function(req, res){
 	// AQUI VALIDO LOS DATOS QUE VIENEN DEL FRONT
 
-	User.findOne({email: req.body.email}, function(err, user) {
+	usuario.findOne({email: req.body.email}, function(err, user) {
         if (err) {
+        	console.log('Algo salio mal');
             res.json({
                 type: false,
                 data: "Error occured: " + err
             });
         } else {
             if (user) {
+            	console.log('El usuario existe');
                 res.json({
                     type: false,
                     data: "User already exists!"
                 });
             } else {
+            	console.log('El usuario no existe, asi que se crea');
+
                 var userModel = new usuario();
                 userModel.nombre = req.body.nombre;
                 userModel.email = req.body.email;
                 userModel.password = req.body.password;
 
+
                 userModel.save(function(err, user) {
-                    user.token = jwt.sign(user, process.env.JWT_SECRET);
-                    user.save(function(err, user1) {
+                	if(err){
+                    	console.log('Erro al guardar el usuario');
+                    }
+
+                	console.log('El usuario quedo registrado');
+                	console.log(user);
+
+                    user.token = jwt.sign(user, config.JWT_SECRET);
+                    user.save(function(err1, user1) {
+                    	if(err1){
+                    		console.log('Erro al guardar el usuario');
+                    	}
+
+                    	console.log('Se creó el token del usuario');
+
                         res.json({
                             type: true,
                             data: user1,
                             token: user1.token
                         });
+                		
+                    	
                     });
                 })
             }

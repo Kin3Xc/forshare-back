@@ -21,15 +21,15 @@ database.connect();
 var app = express();
 
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(morgan("dev"));
-app.use(function(req, res, next) {
-res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
-    next();
-});
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+// app.use(morgan("dev"));
+// app.use(function(req, res, next) {
+// res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+//     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+//     next();
+// });
 
 // require todos los modelos
 fs.readdirSync(__dirname+ '/models').forEach(function(filename){
@@ -42,7 +42,7 @@ fs.readdirSync(__dirname+ '/models').forEach(function(filename){
 // middlewares
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
-
+app.use(morgan("dev"));
 app.use(cors());
 
 
@@ -59,14 +59,9 @@ app.use(methodOverride(function(req, res){
 
 // routes API
 
-// route home
-router.get('/', function(req, res){
-  res.send('Forshare API');
-});
 
 // routes users
-app.use('/api/users', routes_users);
-
+app.use('/', routes_users);
 
 
 // ERROR HANDLERS
