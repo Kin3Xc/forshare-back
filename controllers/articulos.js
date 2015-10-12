@@ -60,7 +60,7 @@ exports.all_articulos = function(req, res){
 
 // funcion que retorna un articulo por su ID
 exports.articulo_id = function(req, res){
-  Articulo.find({_id: req.body.params.id}, function(err, data){
+  Articulo.find({ _id: req.params.id}, function(err, data){
       if (err) {
         console.log('Algo salio mal');
         res.json({
