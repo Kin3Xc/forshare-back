@@ -5,6 +5,7 @@ var router = express.Router();
 
 var user = require('../controllers/users');
 var authorized = require('../authorized/authorized');
+var articulos = require('../controllers/articulos');
 
 var passport = require('passport'); // Passport: Middleware de Node que facilita la autenticación de usuarios
 // Importamos el modelo usuario y la configuración de passport
@@ -21,6 +22,7 @@ router.get('/', function(req, res){
   });
 });
 
+// RUTAS USUARIO
 /* Rutas de Passport */
 // Ruta para desloguearse
 router.get('/logout', function(req, res) {
@@ -42,7 +44,6 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook',
   { successRedirect: '/', failureRedirect: '/api/login' }
 ));
 
-
 // login de usuario
 router.post('/api/login', user.login);
 
@@ -55,7 +56,32 @@ router.put('/api/users/:id', authorized.ensureAuthorized, user.update_user);
 // eliminar usuario
 router.delete('/api/users/:id', authorized.ensureAuthorized, user.delete_user);
 
+// FIN RUTAS USUARIO
 
+
+// RUTAS RTICULOS
+// permite publicar un articulo
+router.post('/api/articulo/add', articulos.add_articulo);
+
+// retorna todos los articulos de la base de datos
+router.get('/api/articulos', articulos.all_articulos);
+
+//  retorna un articulo por id
+router.get('/api/articulo/:id', articulos.articulo_id);
+
+// permite modificar un articulo
+router.put('/api/articulo/:id', articulos.articulo_update);
+
+// permite eliminar un articulo de la base de datos
+router.delete('/api/articulo/:id', articulos.articulo_delete);
+
+// retorna los articulos de una categoria
+router.get('/api/articulos/:categoria', articulos.articulos_categoria);
+
+// retorna la busqueda de articulos por palabras claves
+router.get('/api/articulos/:claves', articulos.articulos_palabras);
+
+// FIN RUTAS ARTICULOS
 
 
 // esporto el modulo

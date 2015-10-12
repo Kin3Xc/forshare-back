@@ -16,7 +16,7 @@ var multer = require('multer');
 var jwt = require("jsonwebtoken");
 var passport = require('passport'); // Passport: Middleware de Node que facilita la autenticación de usuarios
 
-var routes_users = require('./routes/users'); // Dónde tenemos la configuración de las rutas de usuarios
+var routes_index = require('./routes/index'); // Archivo deonde esta el ruteo de las peticiones
 
 // Importamos el modelo usuario y la configuración de passport
 require('./models/users');
@@ -75,9 +75,8 @@ app.use(methodOverride(function(req, res){
 
 // routes API
 
-
 // routes users
-app.use('/', routes_users);
+app.use('/', routes_index);
 
 
 // ERROR HANDLERS
