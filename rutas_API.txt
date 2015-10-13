@@ -1,0 +1,16 @@
+User:
+Login: /api/login - POST
+logout: /api/logout - GET
+Registro: /api/signup - POST
+Editar user: /api/users/:id - PUT
+Eliminar User: /api/users/:id - DELETE
+
+
+Articulos:
+Registro articulo: /api/articulo/add - POST
+Ver articulos: /api/articulos - GET
+Articulo por ID: /api/articulo/:id - GET
+Editar articulo: /api/articulo/:id - PUT
+Elimina articulo: /api/articulo/:id - DELETE
+Articulo por categoria: /api/articulos/:categoria - GET
+Artuculo por palabra clave: /api/articulos/:claves - GET

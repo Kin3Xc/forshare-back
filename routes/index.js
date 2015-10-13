@@ -25,7 +25,7 @@ router.get('/', function(req, res){
 // RUTAS USUARIO
 /* Rutas de Passport */
 // Ruta para desloguearse
-router.get('/logout', function(req, res) {
+router.get('/api/logout', function(req, res) {
   req.logout();
   res.redirect('/');
 });
@@ -49,6 +49,12 @@ router.post('/api/login', user.login);
 
 // registrar usuario
 router.post('/api/signup', user.add_user);
+
+// cerrar session
+router.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
 
 // editar usuario
 router.put('/api/users/:id', authorized.ensureAuthorized, user.update_user);
