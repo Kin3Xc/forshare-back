@@ -51,7 +51,7 @@ router.post('/api/login', user.login);
 router.post('/api/signup', user.add_user);
 
 // usuario loguado
-router.get('api/me', authorized.ensureAuthorized, user.me);
+router.get('/api/me', authorized.ensureAuthorized, user.me);
 
 // cerrar session
 router.get('/logout', function(req, res) {
