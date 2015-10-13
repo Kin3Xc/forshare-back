@@ -13,7 +13,7 @@ var config = require('../config');
 // 	usuario.findOne({ username: req.body.username }, function(err, user){
 // 		if (err) next(err);
 // 		if(!user) {return res.status(401).send({message: 'No existe ese usuario'})}
-		
+
 // 		// aqui viene comprobacion de contraseña bcrypt
 // 		if (req.body.password === null) { return res.status(401).send({message:'Ingrese su password'})}
 
@@ -28,6 +28,8 @@ var config = require('../config');
 // }
 
 exports.login = function(req, res){
+	console.log('Email: '+req.body.email);
+
 	usuario.findOne({email: req.body.email}, function(err, user) {
         if (err) {
             res.json({
@@ -54,16 +56,16 @@ exports.login = function(req, res){
 		                    data: user,
 		                    token: user.token
 		                });
-					}					
-					
+					}
+
 				});
 
-                
+
             } else {
                 res.json({
                     type: false,
                     data: "Incorrect email/password"
-                });    
+                });
             }
         }
     });
@@ -118,8 +120,8 @@ exports.add_user = function(req, res){
                             data: user1,
                             token: user1.token
                         });
-                		
-                    	
+
+
                     });
                 })
             }
@@ -172,5 +174,5 @@ exports.delete_user = function(req, res){
 
 // cambiar pwd
 exports.change_pwd = function(){
-	
+
 }
