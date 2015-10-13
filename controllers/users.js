@@ -27,6 +27,24 @@ var config = require('../config');
 // 	});
 // }
 
+
+exports.me = function(req, res){
+	usuario.findOne({token: req.token}, function(err, user) {
+        if (err) {
+            res.json({
+                type: false,
+                data: "Error occured: " + err
+            });
+        } else {
+            res.json({
+                type: true,
+                data: user
+            });
+        }
+    });
+};
+
+
 exports.login = function(req, res){
 	console.log('Email: '+req.body.email);
 
