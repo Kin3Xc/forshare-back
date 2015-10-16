@@ -6,6 +6,9 @@ var router = express.Router();
 var user = require('../controllers/users');
 var authorized = require('../authorized/authorized');
 var articulos = require('../controllers/articulos');
+var comentarios = require('../controllers/comentarios');
+var categorias = require('../controllers/categorias');
+
 
 var passport = require('passport'); // Passport: Middleware de Node que facilita la autenticación de usuarios
 // Importamos el modelo usuario y la configuración de passport
@@ -90,7 +93,34 @@ router.get('/api/articulos/:categoria', articulos.articulos_categoria);
 // retorna la busqueda de articulos por palabras claves
 router.get('/api/articulos/:claves', articulos.articulos_palabras);
 
+// retorna los articulos de un usuario
+router.get('/api/articulos/user/:id', articulos.articulos_user);
 // FIN RUTAS ARTICULOS
+
+
+
+// RUTAS comentarios
+// permite agregar un comentario
+router.post('/api/comentario/add', comentarios.comentario_add);
+
+// permite editar un comentario
+router.put('/api/comentario/:id',comentarios.comentario_update);
+
+// permite eliminar un comentario
+router.delete('/api/comentario/:id',comentarios.comentario_delete);
+
+// retorna los comentarios de un articulo
+router.get('/api/comentarios/:articulo', comentarios.comentarios_articulo);
+// FUN RUTAS COMENTARIOS
+
+
+// RUTAS categorias
+// permite registrar una categoria en el sistema
+router.post('/api/categoria/add', categorias.categoria_add);
+
+// retorna todas las categorias
+router.get('/api/categorias', categorias.categorias_all);
+// Fin Ruta categorias
 
 
 // esporto el modulo

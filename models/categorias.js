@@ -6,7 +6,7 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var bcrypt = require('bcrypt');
+
 
 // campos que vamos a guardar en la base de datos
 var CategoriaSchema = new Schema({

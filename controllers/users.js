@@ -94,6 +94,15 @@ exports.login = function(req, res){
 exports.add_user = function(req, res){
 	// AQUI VALIDO LOS DATOS QUE VIENEN DEL FRONT
 
+	// valido si viene una imagen
+	//if(req.files.avatar){
+ 		//console.log('Cargando el archivo de la Imagen ...');
+ 		//var foto = req.files.avatar.name;
+ 	//} else {
+	 // si no da foto poner foto default
+		//var foto = "noimage.png";
+ 	//}
+
 	usuario.findOne({email: req.body.email}, function(err, user) {
         if (err) {
         	console.log('Algo salio mal');
@@ -115,6 +124,9 @@ exports.add_user = function(req, res){
                 userModel.nombre = req.body.nombre;
                 userModel.email = req.body.email;
                 userModel.password = req.body.password;
+								userModel.avatar = 'http://tucocinavirtual.com/img/no_perfil.png';
+								userModel.estado = false;
+								userModel.provider = "Email";
 
 
                 userModel.save(function(err, user) {

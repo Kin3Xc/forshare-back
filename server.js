@@ -46,7 +46,7 @@ fs.readdirSync(__dirname+ '/models').forEach(function(filename){
 });
 
 
-// app.use(multer({ dest: './uploads/'}));
+//app.use(multer({ dest: './uploads/'}));
 
 // Middlewares de Express que nos permiten enrutar y poder
 // realizar peticiones HTTP (GET, POST, PUT, DELETE)
@@ -118,7 +118,7 @@ process.on('uncaughtException', function(err) {
 
 
 // Start the server
-app.set('port', process.env.PORT || 8000);//Puerto para express
+app.set('port', process.env.PORT || 5000);//Puerto para express
 
 var server = app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + server.address().port);

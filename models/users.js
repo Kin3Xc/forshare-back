@@ -10,15 +10,22 @@ var bcrypt = require('bcrypt');
 
 // Campos que vamos a guardar en la base de datos
 var UserSchema = new Schema({
-	nombre: String,
-	email: { type: String, required: true, index: { unique: true } },
-	password: String,
-	direccion: String,
-	telefono: Number,
-	avatar: String,
-  token: String,
-	provider: String,
-  createdAt: {type:Date, default: Date.now}
+	nombre: String, // nombre del usuario
+	email: { type: String, required: true, index: { unique: true } }, // email unico de la cuenta
+	password: String, // contraseña del usuario
+	telefono: Number, // numero telefonico del usuario
+	avatar: String, // imagen de perfil del usuario
+	ocupacion: String,
+	bio: String, // biografia del perfil del usuario
+	estado: Boolean, // False: No puede publicarr aun, le faltan datos, True: Esta habilitado
+  token: String, // token del usuario
+	provider: String, // provedor de registro (facebook/twitter)
+	direccion: String, // direccion del usuario
+	ciudad: String, // ciudad donde reside el usuario
+	pais: String, // pais donde reside el usuario
+	lat: String, // coordenada latitud
+	long: String, //coordenada longitud
+  createdAt: {type:Date, default: Date.now} // fecha de registro de la cuenta
 });
 
 //correr antes de .save()

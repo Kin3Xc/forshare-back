@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var path = require('path');
 
 var Articulo = require('../models/articulos');
+var User = require('../models/users');
 
 // funcion para agregar un nuevo articulo
 exports.add_articulo = function(req, res){
@@ -176,3 +177,35 @@ exports.articulos_palabras = function(){
     }
   });
 } // fin articulos_palabras
+
+
+
+
+// retorna todos los articulos de un usuario
+exports.articulos_user = function(req, res){
+  Articulo.find({id_user: req.params.id}, function(err, data){
+    if (err) {
+      console.console.log('Algo salio mal y no puedo encontrara nada '+err);
+      res.json({
+        type: false,
+        data: 'Error al intentar leer los datos'
+      });
+    }else {
+      User.populate(data, {path: 'id_user'}, function(err1, data1){
+        if (err1) {
+          console.console.log('Algo salio mal y no puedo encontrara nada '+err1);
+          res.json({
+            type: false,
+            data: 'Error al leer los articulos del usuario '
+          });
+        }else {
+          console.log('todo va bien, retorno data');
+          res.json({
+            type: true,
+            data: data1
+          });
+        }
+      });
+    }
+  });
+} // fin articulos_user
