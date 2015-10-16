@@ -12,7 +12,8 @@ var ArticuloSchema = new Schema({
   articulo: String, // nombre del articulo
   descripcion: String, // descripcion del articulo
   precio: Number, // valor en pesos del articulo
-  categoria: {type: Schema.ObjectId, ref: 'Categoria_model'}, // ide de la categoria que pertenece el articulo
+  categoria: String,
+  //categoria: {type: Schema.ObjectId, ref: 'Categoria_model'}, // ide de la categoria que pertenece el articulo
   imagenes: [String], // colleccion de imagens del articulo
   id_user: {type: Schema.ObjectId, ref: 'User_model'}, // ide del usuario que publica el articulo
   dias: Number, // numero de días en que se presta el articulo
