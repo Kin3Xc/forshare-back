@@ -224,6 +224,7 @@ exports.articulos_compartir = function(req, res){
         data: 'Ocurrio un error al intentar acceder a los datos'
       });
     }else{
+      console.log(data);
       if (data==[]) {
         res.json({
           type: true,
