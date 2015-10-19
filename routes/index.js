@@ -98,7 +98,7 @@ router.get('/api/articulos/:claves', articulos.articulos_palabras);
 router.get('/api/articulos/user/:id', articulos.articulos_user);
 
 // retorna los articulos para compartir
-router.get('/api/articulos/compartir', articulos.articulos_compartir);
+router.get('/api/compartir/articulos', articulos.articulos_compartir);
 // FIN RUTAS ARTICULOS
 
 
