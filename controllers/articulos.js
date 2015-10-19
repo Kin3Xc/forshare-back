@@ -240,3 +240,32 @@ exports.articulos_compartir = function(req, res){
     }
   });
 }
+
+
+
+// devuelve unicamente los articulos que son para intercambiar
+exports.articulos_intercambiar = function(req, res){
+  Articulo.find({tipo: "Intercambio"}, function(err, data){
+    if(err){
+      console.log('Algo anda muy mal tío');
+      res.json({
+        type: false,
+        data: 'Ocurrio un error al intentar acceder a los datos'
+      });
+    }else{
+      console.log(data);
+      if (data==[]) {
+        res.json({
+          type: true,
+          data: "No hay datos"
+        }); 
+      }else{
+        res.json({
+          type: true,
+          data: data
+        });
+        
+      }
+    }
+  });
+}

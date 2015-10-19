@@ -99,6 +99,9 @@ router.get('/api/articulos/user/:id', articulos.articulos_user);
 
 // retorna los articulos para compartir
 router.get('/api/compartir/articulos', articulos.articulos_compartir);
+
+// retorna los articulos para intercambiar
+router.get('/api/intercambiar/articulos', articulos.articulos_intercambiar);
 // FIN RUTAS ARTICULOS
 
 
