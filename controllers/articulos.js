@@ -63,20 +63,45 @@ exports.all_articulos = function(req, res){
 
 // funcion que retorna un articulo por su ID
 exports.articulo_id = function(req, res){
-  Articulo.find({ _id: req.params.id}, function(err, data){
-      if (err) {
-        console.log('Algo salio mal');
-        res.json({
-          type: false,
-          data: 'Error al consultar el articulo'
-        });
-      }else{
-        console.log('Todo bien, el articulo fue encontrado');
-        res.json({
-          type: true,
-          data: data
-        });
-      }
+  // Articulo.find({ _id: req.params.id}, function(err, data){
+  //     if (err) {
+  //       console.log('Algo salio mal');
+  //       res.json({
+  //         type: false,
+  //         data: 'Error al consultar el articulo'
+  //       });
+  //     }else{
+  //       console.log('Todo bien, el articulo fue encontrado');
+  //       res.json({
+  //         type: true,
+  //         data: data
+  //       });
+  //     }
+  // });
+  Articulo.find({_id: req.params.id}, function(err, data){
+    if (err) {
+      console.console.log('Algo salio mal y no puedo encontrara nada '+err);
+      res.json({
+        type: false,
+        data: 'Error al intentar leer los datos'
+      });
+    }else {
+      User.populate(data, {path: 'id_user'}, function(err1, data1){
+        if (err1) {
+          console.console.log('Algo salio mal y no puedo encontrara nada '+err1);
+          res.json({
+            type: false,
+            data: 'Error al leer los articulos del usuario '
+          });
+        }else {
+          console.log('todo va bien, retorno data');
+          res.json({
+            type: true,
+            data: data1
+          });
+        }
+      });
+    }
   });
 } // fin articulo_id
 
