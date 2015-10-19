@@ -216,7 +216,7 @@ exports.articulos_user = function(req, res){
 
 // devuelve unicamente los articulos que son para prestar o alquilar
 exports.articulos_compartir = function(req, res){
-  Articulo.find({tipo: 'Compartir'}, function(err, data){
+  Articulo.find({tipo: "Compartir"}, function(err, data){
     if(err){
       console.log('Algo anda muy mal tío');
       res.json({
