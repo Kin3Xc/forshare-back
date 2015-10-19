@@ -15,6 +15,7 @@ exports.add_articulo = function(req, res){
     descripcion: req.body.descripcion,
     precio: req.body.precio,
     categoria: req.body.categoria,
+    tipo: req.body.tipo,
     imagenes: req.body.imagenes,
     id_user: req.body.id_user
   });
@@ -223,10 +224,18 @@ exports.articulos_compartir = function(req, res){
         data: 'Ocurrio un error al intentar acceder a los datos'
       });
     }else{
-      res.json({
-        type: true,
-        data: data
-      });
+      if (data==[]) {
+        res.json({
+          type: true,
+          data: "No hay datos"
+        }); 
+      }else{
+        res.json({
+          type: true,
+          data: data
+        });
+        
+      }
     }
   });
 }
