@@ -3,6 +3,7 @@
 var express = require('express');
 var router = express.Router();
 
+
 var user = require('../controllers/users');
 var authorized = require('../authorized/authorized');
 var articulos = require('../controllers/articulos');
@@ -95,6 +96,9 @@ router.get('/api/articulos/:claves', articulos.articulos_palabras);
 
 // retorna los articulos de un usuario
 router.get('/api/articulos/user/:id', articulos.articulos_user);
+
+// retorna los articulos para compartir
+router.get('/api/articulos/compartir', articulos.articulos_compartir);
 // FIN RUTAS ARTICULOS
 
 

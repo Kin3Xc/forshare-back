@@ -1,14 +1,15 @@
-var mongoose = require('mongoose');
-var path = require('path');
+var fs = require('fs');
 
 var Articulo = require('../models/articulos');
 var User = require('../models/users');
+
 
 // funcion para agregar un nuevo articulo
 exports.add_articulo = function(req, res){
   // FATLTA VALIDAR DATOS AQUÍ
 
-  // creo el objeto articulo con sus diferentes atributos
+
+  //creo el objeto articulo con sus diferentes atributos
   var articulo = new Articulo({
     articulo: req.body.articulo,
     descripcion: req.body.descripcion,
@@ -209,3 +210,23 @@ exports.articulos_user = function(req, res){
     }
   });
 } // fin articulos_user
+
+
+
+// devuelve unicamente los articulos que son para prestar o alquilar
+exports.articulos_compartir = function(req, res){
+  Articulo.find({tipo: 'Compartir'}, function(err, data){
+    if(err){
+      console.log('Algo anda muy mal tío');
+      res.json({
+        type: false,
+        data: 'Ocurrio un error al intentar acceder a los datos'
+      });
+    }else{
+      res.json({
+        type: true,
+        data: data
+      });
+    }
+  });
+}

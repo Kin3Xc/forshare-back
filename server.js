@@ -12,9 +12,13 @@ var path = require('path');
 var cors = require('cors');
 var favicon = require('favicon');
 var fs = require('fs');
-var multer = require('multer');
 var jwt = require("jsonwebtoken");
 var passport = require('passport'); // Passport: Middleware de Node que facilita la autenticación de usuarios
+
+// var multer  = require('multer');
+// var upload = multer({ dest: 'uploads/' });
+
+// var multipart = require('connect-multiparty');
 
 var routes_index = require('./routes/index'); // Archivo deonde esta el ruteo de las peticiones
 
@@ -28,6 +32,9 @@ database.connect();
 
 // Iniciamos la aplicación Express
 var app = express();
+
+
+// app.use(multipart());
 
 
 // app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,8 +52,8 @@ fs.readdirSync(__dirname+ '/models').forEach(function(filename){
   if (~filename.indexOf('.js')) require(__dirname+'/models/'+filename);
 });
 
-
-//app.use(multer({ dest: './uploads/'}));
+// app.use(multer({ dest: './uploads/'}));
+// app.use(multer({dest:'./uploads/'}).array('imagenes', 10));
 
 // Middlewares de Express que nos permiten enrutar y poder
 // realizar peticiones HTTP (GET, POST, PUT, DELETE)
