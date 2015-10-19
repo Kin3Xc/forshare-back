@@ -216,7 +216,7 @@ exports.articulos_user = function(req, res){
 
 // devuelve unicamente los articulos que son para prestar o alquilar
 exports.articulos_compartir = function(req, res){
-  Articulo.find({tipo: "Compartir"}, function(err, data){
+  Articulo.find({tipo: "compartir"}, function(err, data){
     if(err){
       console.log('Algo anda muy mal tío');
       res.json({
@@ -245,7 +245,7 @@ exports.articulos_compartir = function(req, res){
 
 // devuelve unicamente los articulos que son para intercambiar
 exports.articulos_intercambiar = function(req, res){
-  Articulo.find({tipo: "Intercambio"}, function(err, data){
+  Articulo.find({tipo: "intercambio"}, function(err, data){
     if(err){
       console.log('Algo anda muy mal tío');
       res.json({
@@ -254,7 +254,7 @@ exports.articulos_intercambiar = function(req, res){
       });
     }else{
       console.log(data);
-      if (data==[]) {
+      if (data==null) {
         res.json({
           type: true,
           data: "No hay datos"
