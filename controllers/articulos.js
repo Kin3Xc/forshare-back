@@ -143,20 +143,23 @@ exports.articulo_delete = function(req, res){
 
 // funcion que retorna los articulos de una categoría
 exports.articulos_categoria = function(req, res){
-  Articulo.find({categoria: req.params.categoria}, function(err, data){
-    if (err) {
-      console.log('Algo salio muy mal ' +err);
-      res.json({
-        type: false,
-        data: 'Error al consltar los datos'
-      });
-    }else{
-      console.log('Todo va bien, retornos la data');
-      res.json({
-        type: true,
-        data: data
-      });
-    }
+  Articulo.find({categoria: req.params.categoria}).count(function(err1, count){
+    Articulo.find({categoria: req.params.categoria}, function(err, data){
+      if (err) {
+        console.log('Algo salio muy mal ' +err);
+        res.json({
+          type: false,
+          data: 'Error al consltar los datos'
+        });
+      }else{
+        console.log('Todo va bien, retornos la data');
+        res.json({
+          type: true,
+          count: count,
+          data: data
+        });
+      }
+    });
   });
 } // fin articulos_categoria
 
