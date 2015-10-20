@@ -18,6 +18,7 @@ var ArticuloSchema = new Schema({
   id_user: {type: Schema.ObjectId, ref: 'User_model'}, // ide del usuario que publica el articulo
   dias: Number, // numero de días en que se presta el articulo
   estado: String, // estado en el que se encuentra (Disponible/prestado)
+  observacion: String,
   tipo: String, // si es para alquilar o intercambiar
   createdAt: {type:Date, default: Date.now} // fecha de cración del articulo
 });

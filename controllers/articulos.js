@@ -17,6 +17,7 @@ exports.add_articulo = function(req, res){
     categoria: req.body.categoria,
     tipo: req.body.tipo,
     imagenes: req.body.imagenes,
+    observacion: re.body.observacion,
     id_user: req.body.id_user
   });
 
