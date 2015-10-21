@@ -175,6 +175,24 @@ exports.add_user = function(req, res){
 }
 
 
+// retorna un usuario por su ID
+exports.get_user_id = function(req, res){
+    usuario.findOne({_id: req.params.id}, function(err, data){
+        if (err) {
+            res.json({
+                type: false,
+                data: 'Error al consultar los datos del usuario'
+            });
+        }else{
+            res.json({
+                type: true,
+                data: data
+            });
+        }
+    });
+}
+
+
 // funcion para editar un usuario
 exports.update_user = function(req, res){
 	usuario.findOne({_id: req.params.id}, function(err, data){

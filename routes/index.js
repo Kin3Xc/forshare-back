@@ -63,11 +63,14 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
+// retorna usuario por id
+router.get('/api/user/:id', user.get_user_id);
+
 // editar usuario
-router.put('/api/users/:id', authorized.ensureAuthorized, user.update_user);
+router.put('/api/user/:id', authorized.ensureAuthorized, user.update_user);
 
 // eliminar usuario
-router.delete('/api/users/:id', authorized.ensureAuthorized, user.delete_user);
+router.delete('/api/user/:id', authorized.ensureAuthorized, user.delete_user);
 
 // FIN RUTAS USUARIO
 
