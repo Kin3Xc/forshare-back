@@ -14,6 +14,7 @@ exports.add_articulo = function(req, res){
     articulo: req.body.articulo,
     descripcion: req.body.descripcion,
     precio: req.body.precio,
+    dias: req.body.dias,
     categoria: req.body.categoria,
     tipo: req.body.tipo,
     imagenes: req.body.imagenes,
