@@ -4,6 +4,11 @@ var Articulo = require('../models/articulos');
 var User = require('../models/users');
 
 
+//calle 77 74 44  302
+//2:00 pm
+//Alex forero
+//Progresion 
+
 // funcion para agregar un nuevo articulo
 exports.add_articulo = function(req, res){
   // FATLTA VALIDAR DATOS AQUÍ
