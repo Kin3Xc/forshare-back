@@ -13,7 +13,7 @@ var User = require('../models/users');
 exports.add_articulo = function(req, res){
   // FATLTA VALIDAR DATOS AQUÍ
 
-
+  console.log('Quiero agregar un articulo');
   //creo el objeto articulo con sus diferentes atributos
   var articulo = new Articulo({
     articulo: req.body.articulo,
@@ -23,7 +23,7 @@ exports.add_articulo = function(req, res){
     categoria: req.body.categoria,
     tipo: req.body.tipo,
     imagenes: req.body.imagenes,
-    observacion: re.body.observacion,
+    observacion: req.body.observacion,
     id_user: req.body.id_user
   });
 
